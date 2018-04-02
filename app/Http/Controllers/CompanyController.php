@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Company;
+use App\Http\Requests\StoreCompany;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Auth;
+
 
 class CompanyController extends Controller
 {
@@ -14,8 +18,12 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $companies = Company::all();
-        return view('companies/index', compact('companies'));
+        if (Auth::check()) {
+            $companies = Company::paginate(10);
+            return view('companies/index', compact('companies'));
+        } else {
+            return redirect('login')->with('danger', 'You don\'t have permission to view this page.');
+        }
     }
 
     /**
@@ -25,24 +33,31 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view('companies/create');
+        if (Auth::check()) {
+            return view('companies/create');
+        } else {
+            return redirect('login')->with('danger', 'You don\'t have permission to view this page.');
+        }
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  StoreCompany $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreCompany $request)
     {
+        $company = new Company();
         $name = "";
+
+        $validated = $request->validated();
+
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $name = time() . $file->getClientOriginalName();
-            $file->move(public_path() . '/logos/', $name);
+            $file->move(storage_path('app/public/logos'), $name);
         }
-        $company = new Company();
         $company->name = $request->get('name');
         $company->email = $request->get('email');
         $company->logo = $name;
@@ -71,23 +86,37 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        $company = Company::find($id);
-        return view('companies/edit', compact('company', 'id'));
+        if (Auth::check()) {
+            $company = Company::find($id);
+            return view('companies/edit', compact('company', 'id'));
+        } else {
+            return redirect('login')->with('danger', 'You don\'t have permission to view this page.');
+        }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request $request
+     * @param  StoreCompany $request
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreCompany $request, $id)
     {
         $company = Company::find($id);
+        $company->fill($request->except('logo'));
+
+        $validated = $request->validated();
+
+        if ($file = $request->hasFile('logo')) {
+            $file = $request->file('logo');
+            $name = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/logos/', $name);
+            $company->logo = $name;
+        }
+
         $company->name = $request->get('name');
         $company->email = $request->get('email');
-        $company->logo = $request->get('logo');
         $company->website = $request->get('website');
         $company->save();
 

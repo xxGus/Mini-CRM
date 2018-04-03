@@ -12,9 +12,6 @@
     <title>{{ config('app.name', 'Mini-CRM') }}</title>
 
     <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-            crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="https://fonts.gstatic.com">
@@ -23,7 +20,7 @@
     <!-- Styles -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+
 </head>
 <body>
 <div id="app">
@@ -119,8 +116,6 @@
         @yield('content')
     </main>
 </div>
-<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
-<script src="{{asset('js/scripts.js')}}"></script>
 <script src="{{ asset('js/app.js') }}" defer></script>
 </body>
 </html>

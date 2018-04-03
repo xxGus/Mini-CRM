@@ -15,40 +15,42 @@
                 <p>{{ \Session::get('success') }}</p>
             </div><br/>
         @endif
-        <table id="table-company" class="table table-striped">
+        <table id="table" class="table table-striped">
             <thead>
-            <tr>
-                <th>Logo</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Website</th>
-                <th colspan="2">Action</th>
-            </tr>
+                <tr>
+                    <th>Logo</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Website</th>
+                    <th colspan="2">Action</th>
+                    <th></th>
+                </tr>
             </thead>
             <tbody>
+                @foreach($companies as $company)
+                    <tr>
+                        <td><img src="{{asset('storage/logos').'/'.$company['logo']}}" width="40px" alt=""></td>
+                        <td>{{$company['name']}}</td>
+                        <td>{{$company['email']}}</td>
+                        <td>{{$company['website']}}</td>
 
-            @foreach($companies as $company)
-                <tr>
-                    <td><img src="{{asset('storage/logos').'/'.$company['logo']}}" width="40px" alt=""></td>
-                    <td>{{$company['name']}}</td>
-                    <td>{{$company['email']}}</td>
-                    <td>{{$company['website']}}</td>
-
-                    <td><a href="{{action('CompanyController@edit', $company['id'])}}" class="btn btn-warning">Edit</a>
-                    </td>
-                    <td>
-                        <form action="{{action('CompanyController@destroy', $company['id'])}}" method="post">
-                            @csrf
-                            <input name="_method" type="hidden" value="DELETE">
-                            <button class="btn btn-danger" type="submit">Delete</button>
-                        </form>
-                    </td>
-                </tr>
-            @endforeach
+                        <td><a href="{{action('CompanyController@edit', $company['id'])}}" class="btn btn-warning">Edit</a>
+                        </td>
+                        <td>
+                            <form id="delete" action="{{action('CompanyController@destroy', $company['id'])}}"
+                                  method="post">
+                                @csrf
+                                <input name="_method" type="hidden" value="DELETE">
+                                <button class="btn btn-danger" type="submit">Delete</button>
+                            </form>
+                        </td>
+                        <td></td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
-        @php
-            echo $companies->render();
-        @endphp
+        {{--@php--}}
+            {{--echo $companies->render();--}}
+        {{--@endphp--}}
     </div>
 @endsection

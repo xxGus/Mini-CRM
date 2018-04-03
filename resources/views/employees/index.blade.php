@@ -17,7 +17,7 @@
             </div><br/>
         @endif
         <div class="col-lg-12">
-            <table class="table table-striped">
+            <table id="table" class="table table-striped">
                 <thead>
                 <tr>
                     <th>First Name</th>
@@ -26,6 +26,7 @@
                     <th>Email</th>
                     <th>Phone</th>
                     <th colspan="2">Action</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -44,12 +45,13 @@
                             </a>
                         </td>
                         <td>
-                            <form action="{{action('EmployeeController@destroy', $employee['id'])}}" method="post">
+                            <form id="delete" action="{{action('EmployeeController@destroy', $employee['id'])}}" method="post">
                                 @csrf
                                 <input name="_method" type="hidden" value="DELETE">
                                 <button class="btn btn-danger" type="submit">Delete</button>
                             </form>
                         </td>
+                        <td></td>
                     </tr>
                 @endforeach
                 </tbody>

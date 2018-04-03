@@ -19,7 +19,7 @@ class CompanyController extends Controller
     public function index()
     {
         if (Auth::check()) {
-            $companies = Company::paginate(10);
+            $companies = Company::all();
             return view('companies/index', compact('companies'));
         } else {
             return redirect('login')->with('danger', 'You don\'t have permission to view this page.');

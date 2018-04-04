@@ -33,7 +33,7 @@ html, body {
 
 .title {
   font-size: 84px;
-  margin-top: 25%; }
+  margin-top: 15%; }
 
 .links > a {
   color: #636b6f;
@@ -46,5 +46,14 @@ html, body {
 
 .m-b-md {
   margin-bottom: 30px; }
+
+.card {
+  width: 50%;
+  margin-top: 10%;
+  margin-left: 25%; }
+  .card .card-header {
+    font-size: 50px; }
+  .card .card-body form input, .card .card-body form button, .card .card-body form a {
+    margin-top: 15px; }
 
 /*# sourceMappingURL=app.css.map */

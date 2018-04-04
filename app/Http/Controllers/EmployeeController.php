@@ -47,7 +47,8 @@ class EmployeeController extends Controller
     public function create()
     {
         if (Auth::check()) {
-            return view('employees/create');
+            $companies = Company::all();
+            return view('employees/create', compact('companies'));
         } else {
             return redirect('login')->with('danger', 'You don\'t have permission to view this page.');
         }

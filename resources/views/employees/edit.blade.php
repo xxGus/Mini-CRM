@@ -7,10 +7,10 @@
  */
 ?>
 
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
+    <div class="container text-left">
         <h2>Edit employee</h2><br/>
         <form method="post" action="{{action("EmployeeController@update", $employee)}}">
             @csrf

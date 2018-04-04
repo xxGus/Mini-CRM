@@ -5,11 +5,11 @@
  * Date: 26/03/2018
  * Time: 19:42
  */ ?>
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
-        <h2>Create new company</h2><br/>
+    <div class="container text-left">
+        <h2>New company</h2><br/>
         <form method="post" action="{{url('companies')}}" enctype="multipart/form-data">
             @csrf
             <div class="row">

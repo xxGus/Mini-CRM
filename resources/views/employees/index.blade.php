@@ -7,7 +7,7 @@
  */
 ?>
 
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -16,7 +16,7 @@
                 <p>{{ \Session::get('success') }}</p>
             </div><br/>
         @endif
-        <div class="col-lg-12">
+        <div class="col-lg-11">
             <table id="table" class="table table-striped">
                 <thead>
                 <tr>

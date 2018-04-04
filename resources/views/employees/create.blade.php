@@ -7,11 +7,11 @@
  */
 ?>
 
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
-    <div class="container">
-        <h2>Create new employee</h2><br/>
+    <div class="container text-left">
+        <h2>New employee</h2><br/>
         <form method="post" action="{{url('employees')}}" enctype="multipart/form-data">
             @csrf
             <div class="row">
@@ -32,7 +32,11 @@
                 <div class="col-md-4"></div>
                 <div class="form-group col-md-4">
                     <label for="company">Company</label>
-                    <input type="number" class="form-control" name="company_id">
+                    <select name="company_id" class="form-control" id="company_id">
+                        @foreach($companies as $company)
+                            <option value="{{$company->id}}">{{$company->name}}</option>
+                        @endforeach
+                    </select>
                 </div>
             </div>
             <div class="row">

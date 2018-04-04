@@ -6,7 +6,7 @@
  * Time: 19:42
  */
 ?>
-@extends('layouts.app')
+@extends('layouts.admin')
 
 @section('content')
     <div class="container">
@@ -15,8 +15,10 @@
                 <p>{{ \Session::get('success') }}</p>
             </div><br/>
         @endif
-        <table id="table" class="table table-striped">
-            <thead>
+        <div class="col-lg-11">
+
+            <table id="table" class="table table-striped">
+                <thead>
                 <tr>
                     <th>Logo</th>
                     <th>Name</th>
@@ -25,8 +27,8 @@
                     <th colspan="2">Action</th>
                     <th></th>
                 </tr>
-            </thead>
-            <tbody>
+                </thead>
+                <tbody>
                 @foreach($companies as $company)
                     <tr>
                         <td><img src="{{asset('storage/logos').'/'.$company['logo']}}" width="40px" alt=""></td>
@@ -34,7 +36,8 @@
                         <td>{{$company['email']}}</td>
                         <td>{{$company['website']}}</td>
 
-                        <td><a href="{{action('CompanyController@edit', $company['id'])}}" class="btn btn-warning">Edit</a>
+                        <td><a href="{{action('CompanyController@edit', $company['id'])}}"
+                               class="btn btn-warning">Edit</a>
                         </td>
                         <td>
                             <form id="delete" action="{{action('CompanyController@destroy', $company['id'])}}"
@@ -47,10 +50,12 @@
                         <td></td>
                     </tr>
                 @endforeach
-            </tbody>
-        </table>
-        {{--@php--}}
-            {{--echo $companies->render();--}}
-        {{--@endphp--}}
+                </tbody>
+            </table>
+        </div>
+
+            @php
+                echo $companies->render();
+            @endphp
     </div>
 @endsection

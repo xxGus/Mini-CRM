@@ -4,13 +4,9 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-require('./bootstrap');
 
 window.Vue = require('vue');
 
-import $ from 'jquery';
-
-window.DataTable = require('datatables.net');
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -29,7 +25,6 @@ $(document).ready(function ($) {
             e.preventDefault();
         }
     });
-
     $('#table').DataTable(
         {
             paging: false

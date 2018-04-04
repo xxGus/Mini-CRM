@@ -1,15 +1,11 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-
 // Variables
 @import "variables";
-
 // Bootstrap
 @import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
 
 html, body {
-
   background-color: #ffffff;
   color: #636b6f;
   font-family: 'Raleway', sans-serif;
@@ -22,7 +18,6 @@ html, body {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
-
 
 .full-height {
   height: 100vh;
@@ -50,7 +45,7 @@ html, body {
 
 .title {
   font-size: 84px;
-  margin-top: 25%;
+  margin-top: 15%;
 }
 
 .links > a {
@@ -65,4 +60,21 @@ html, body {
 
 .m-b-md {
   margin-bottom: 30px;
+}
+
+.card {
+  width: 50%;
+  margin-top: 10%;
+  margin-left: 25%;
+  .card-header {
+    font-size: 50px;
+  }
+
+  .card-body {
+    form {
+      input, button, a{
+        margin-top: 15px;
+      }
+    }
+  }
 }

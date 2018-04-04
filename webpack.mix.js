@@ -14,14 +14,3 @@ mix.disableNotifications();
 
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
-
-mix.webpackConfig({
-    resolve: {
-        alias: {
-            jquery: "jquery/src/jquery"
-        },
-        modules:[
-            path.resolve(__dirname, 'node_modules/admin-lte')
-        ]
-    }
-});
